@@ -18,4 +18,7 @@ jobs:
         with:
           persist-credentials: false
       - uses: totto2727-org/monorepo/.github/actions/setup-nix@main
-      - run: nix develop --command deno publish
+      - name: Publish to JSR
+        run: |
+          eval "$(nix print-dev-env "$GITHUB_WORKSPACE#default")"
+          deno publish

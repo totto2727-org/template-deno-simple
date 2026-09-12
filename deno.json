@@ -19,7 +19,8 @@
     "dev": "deno run --watch src/main.ts",
     "check": "deno fmt --check && deno lint && deno check",
     "fix": "deno fmt && deno lint --fix",
-    "test": "deno test"
+    "test": "deno test",
+    "ci": "deno task check && deno task test && deno task start && deno publish --dry-run"
   },
   "fmt": {
     "proseWrap": "preserve",

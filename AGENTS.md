@@ -28,10 +28,11 @@ src/                   Greeting, CLI entry point, and tests
 ### Standard tasks
 
 - `nix develop`: Enter the pinned development shell.
-- `nix develop --command nixfmt flake.nix package.nix`: Format the Nix definitions.
+- `nixfmt flake.nix package.nix`: Format the Nix definitions.
 - `deno task fix`: Format and apply supported lint fixes.
 - `deno task check`: Check formatting, lint, and all discovered TypeScript files.
 - `deno task test`: Run all tests.
+- `deno task ci`: Run the complete pre-merge validation gate: checks, tests, sample execution, and JSR publish dry run.
 - `deno task start`: Run the source CLI.
 - `deno task dev`: Watch source changes.
 - `deno publish --dry-run`: Validate JSR exports and inspect publication contents without publishing.
@@ -54,7 +55,7 @@ src/                   Greeting, CLI entry point, and tests
 - This source-based Nix package is intentionally dependency-free. When adding runtime dependencies, update it to bundle or vendor them reproducibly rather than resolving packages from the network at runtime.
 - `flake.nix` exports `packages.project`, `packages.default`, and `overlays.default` for aarch64-darwin, aarch64-linux, and x86_64-linux.
 - JSR exports the greeting module at the package root and the CLI at /cli.
-- Normal CI validates only source code and registry package contents. Run Nix package validation manually when changing the packaging. Both source validation and JSR publication use `nix develop --command deno` after the shared Nix setup action.
+- Normal CI validates only source code and registry package contents. Run Nix package validation manually when changing the packaging. Both workflows load the shell once with `eval "$(nix print-dev-env "$GITHUB_WORKSPACE#default")"` after the shared Nix setup action. Source validation runs `deno task ci`; publication runs `deno publish`.
 
 ## Development tools
 
@@ -89,7 +90,7 @@ mv AGENTS_TEMPLATE.md AGENTS.md
 3. Use the GitHub-hosted runner and job-scoped `id-token: write` in `publish.yml`. JSR obtains OIDC authentication from the linked repository automatically. Do not add a JSR token or a `--token` argument.
 4. Audit the third-party action pins and shared monorepo branch references, configure protected release tags, and rename `.github/workflows/publish.yml.disabled` to `publish.yml`.
 5. Run `deno task check`, `deno task test`, and `deno publish --dry-run` and review the exact uploaded files. During local work only, add `--allow-dirty` to the dry run if needed; never add it to the publishing workflow.
-6. Commit the initialized package and push a protected release tag. The workflow runs only `nix develop --command deno publish` after setup, with default provenance enabled. Source checks, tests, and the publish dry run belong to pre-merge CI and are not repeated here. JSR uses the version in `deno.json` and succeeds when that version is already published.
+6. Commit the initialized package and push a protected release tag. The workflow loads the Nix environment and runs only `deno publish` after setup, with default provenance enabled. Source checks, tests, and the publish dry run belong to pre-merge CI and are not repeated here. JSR uses the version in `deno.json` and succeeds when that version is already published.
 
 Reference: [JSR GitHub Actions publishing](https://jsr.io/docs/publishing-packages#publishing-from-github-actions).
 
