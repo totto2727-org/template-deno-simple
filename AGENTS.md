@@ -22,6 +22,7 @@ deno.json                   Deno tasks and formatting settings
 ### Standard tasks
 
 - `deno task check`: Check formatting, lint, and TypeScript types.
+- `deno task fix`: Format the repository and apply automatic lint fixes.
 - `deno task test`: Run tests without additional permissions.
 - `deno task start`: Run the sample.
 - `deno task dev`: Run the sample and watch source changes.

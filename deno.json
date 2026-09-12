@@ -2,7 +2,8 @@
   "tasks": {
     "start": "deno run src/main.ts",
     "dev": "deno run --watch src/main.ts",
-    "check": "deno fmt --check && deno lint && deno check src/main.ts src/greet_test.ts",
+    "check": "deno fmt --check && deno lint && deno check",
+    "fix": "deno fmt && deno lint --fix",
     "test": "deno test"
   },
   "fmt": {
