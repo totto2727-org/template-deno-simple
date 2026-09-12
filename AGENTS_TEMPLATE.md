@@ -69,6 +69,6 @@ Replace the sample paths with the initialized project's actual source and test l
 - Keep exports and publication patterns in deno.json aligned with the public API. Commit deno.lock when external dependencies are introduced.
 - Update flake.lock when Nix inputs change.
 - Keep publishing workflows disabled until repository-linked OIDC publication is configured. Use no long-lived registry tokens.
-- Keep shared totto2727-org/monorepo actions on @main and review the pinned third-party actions before enabling publication.
+- Keep shared totto2727-org/monorepo actions on @main and review the pinned third-party actions before enabling publication. The shared publish-jsr action requires Node.js and Vite+ (`vpx`) in the Nix shell; Deno remains the source validation tool.
 
 _This AGENTS.md was generated from the [share-artifact skill](https://raw.githubusercontent.com/totto2727-org/agent/refs/heads/main/plugins/totto2727-coding/skills/share-artifact/SKILL.md) and [AGENTS template](https://raw.githubusercontent.com/totto2727-org/agent/refs/heads/main/plugins/totto2727-coding/skills/share-artifact/agents/template.md)._
