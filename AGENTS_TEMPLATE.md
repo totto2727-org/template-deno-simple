@@ -58,6 +58,7 @@ Replace the sample paths with the initialized project's actual source and test l
 
 - Replace this section with repository-specific invariants and remove placeholder guidance before handoff.
 - Keep README Usage centered on a representative command invocation with no application options when possible.
+- Keep README Setup's permission policy aligned with the run, global-install, and Nix launcher permissions. Document each required grant, its resource scope, and its purpose; never default to unrestricted access.
 - Keep README Setup complete: present direct `deno run` and `nix run`, installed `deno install --global` and `nix profile add`, and a declarative `flake.nix` example using `overlays.default` as mutually exclusive choices; state that only one setup method is required.
 - Remove unsupported acquisition paths before publishing the README. For libraries, document dependency setup and every public export instead of CLI installation routes.
 - Inspect the canonical registry API documentation when the project exposes a library. Link a maintained API index when available; otherwise provide complete inline coverage or a substantive guide.

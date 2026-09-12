@@ -74,6 +74,8 @@ src/                   Greeting, CLI entry point, and tests
 4. Replace the sample implementation and tests. Keep `package.nix` and package/overlay outputs while distributing a CLI, or remove those outputs and the corresponding README installation paths together.
 5. Customize `README_TEMPLATE.md` and `AGENTS_TEMPLATE.md` for the copied project. Remove placeholder guidance and replace the template-only documents:
 
+Document the application's runtime permission policy in README Setup, including each permission's scope and purpose, and apply the same minimum grants to its run, global-install, and Nix launcher commands.
+
 ```bash
 rm README.md AGENTS.md
 mv README_TEMPLATE.md README.md

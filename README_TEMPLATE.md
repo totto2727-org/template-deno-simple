@@ -25,6 +25,25 @@ Hello, world!
 Document the supported paths. For applications, include Run, Install, and declarative Nix setup when available. For libraries, include dependency setup only.
 Choose one supported setup method; only one is required.
 
+### Permission policy
+
+Document the permissions required by the completed application before listing its run and install commands.
+For each permission, state its purpose, exact resource scope, and whether it is required or only needed for an optional feature.
+If no runtime permissions are required, state that explicitly and omit permission flags, as in the commands below.
+
+| Permission                                             | Allowed resources                                                   | Purpose                          | Required or optional      |
+| ------------------------------------------------------ | ------------------------------------------------------------------- | -------------------------------- | ------------------------- |
+| Replace with each required permission, or state `None` | Exact paths, hosts, environment variable names, or executable names | Why the application needs access | Which feature requires it |
+
+- Grant only the permissions the application needs, scoped where possible, such as `--allow-read=/path/to/input`, `--allow-net=api.example.com`, or `--allow-env=API_KEY`.
+- Put the same required permission flags before the package specifier in both `deno run` and `deno install --global` commands below, and keep the Usage example consistent.
+- `deno install --global` records those flags in the installed launcher for subsequent runs. Reinstall the command when changing its permission policy.
+- Do not use `-A` / `--allow-all` or unrestricted permission categories as the default. Explicitly justify subprocess or native-library access because it can bypass Deno's sandbox.
+- For unattended execution, document `--no-prompt` together with the required grants so missing permissions fail instead of requesting interactive approval.
+- If the Nix installation path is retained, document the permissions granted by its launcher as well. Nix installation does not automatically grant Deno runtime permissions.
+
+See the [Deno permissions guide](https://docs.deno.com/runtime/fundamentals/security/) and [global installation reference](https://docs.deno.com/runtime/reference/cli/install/#deno-install---global-package_or_url).
+
 ### Run without installing
 
 ```bash
