@@ -7,8 +7,5 @@
   },
   "fmt": {
     "proseWrap": "preserve"
-  },
-  "exclude": [
-    "tmp/"
-  ]
+  }
 }
