@@ -40,9 +40,9 @@ The sample defines no options, ignores extra arguments, and performs no network 
 Returns a greeting for the supplied string without trimming or normalizing it.
 
 ```ts
-import { greet } from "./src/greet.ts";
+import { greet } from './src/greet.ts'
 
-greet("TypeScript"); // "Hello, TypeScript!"
+greet('TypeScript') // "Hello, TypeScript!"
 ```
 
 ## Development

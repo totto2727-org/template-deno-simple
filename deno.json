@@ -7,6 +7,9 @@
     "test": "deno test"
   },
   "fmt": {
-    "proseWrap": "preserve"
+    "proseWrap": "preserve",
+    "semiColons": false,
+    "singleQuote": true,
+    "lineWidth": 120
   }
 }

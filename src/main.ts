@@ -1,3 +1,3 @@
-import { greet } from "./greet.ts";
+import { greet } from './greet.ts'
 
-console.log(greet());
+console.log(greet())
