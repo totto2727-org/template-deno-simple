@@ -22,9 +22,7 @@ The task runner may print its command before the application output.
 ## Prerequisites
 
 - **GitHub**: An account to create a repository from this template.
-- **Deno**: Install [Deno](https://docs.deno.com/runtime/getting_started/installation/) 2.9 or newer.
-
-- **Nix (optional)**: Use the flake-based development environment and packaged command.
+- **Nix with flakes enabled**: Provides the pinned Deno runtime through the development environment.
 
 ## Setup
 

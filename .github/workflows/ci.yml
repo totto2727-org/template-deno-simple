@@ -16,22 +16,8 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
-        with:
-          deno-version: '2.9.5'
-      - run: deno task check
-      - run: deno task test
-      - run: deno task start
-      - run: deno publish --dry-run
-
-  nix:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          persist-credentials: false
-      - uses: totto2727-org/monorepo/.github/actions/setup-nix@485ae4509dc295fdc834bd2b45fe48c5da8db5e5
-      - run: nix flake check --all-systems --no-build
-      - run: nix build
-      - run: nix run .
+      - uses: totto2727-org/monorepo/.github/actions/setup-nix@main
+      - run: nix develop --command deno task check
+      - run: nix develop --command deno task test
+      - run: nix develop --command deno task start
+      - run: nix develop --command deno publish --dry-run

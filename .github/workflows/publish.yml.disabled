@@ -17,13 +17,11 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2.0.5
-        with:
-          deno-version: '2.9.5'
+      - uses: totto2727-org/monorepo/.github/actions/setup-nix@main
       - name: Verify release tag
         run: |
-          deno eval 'import config from "./deno.json" with { type: "json" }; if (Deno.env.get("GITHUB_REF_NAME") !== `v${config.version}`) throw new Error("Tag must match deno.json version")'
-      - run: deno task check
-      - run: deno task test
-      - run: deno publish --dry-run
-      - run: deno publish
+          nix develop --command deno eval 'import config from "./deno.json" with { type: "json" }; if (Deno.env.get("GITHUB_REF_NAME") !== `v${config.version}`) throw new Error("Tag must match deno.json version")'
+      - run: nix develop --command deno task check
+      - run: nix develop --command deno task test
+      - run: nix develop --command deno publish --dry-run
+      - run: nix develop --command deno publish

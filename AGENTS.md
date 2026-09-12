@@ -19,7 +19,7 @@ src/                   Greeting, CLI entry point, and tests
 ### Execution rules
 
 - Run commands from the repository root.
-- Use `nix develop` for the pinned environment, or install the toolchain described in README.
+- Use `nix develop` for the pinned Deno environment. Local development and CI resolve Deno from `flake.lock`, not a separate runtime installer.
 - Do not grant blanket -A permissions. The starter application and tests require no extra permissions.
 - Use native Deno tasks for source validation and direct Nix commands for package validation.
 - Keep semicolons disabled, single quotes enabled, line width 120, and Markdown prose unwrapped.
@@ -54,7 +54,7 @@ src/                   Greeting, CLI entry point, and tests
 - This source-based Nix package is intentionally dependency-free. When adding runtime dependencies, update it to bundle or vendor them reproducibly rather than resolving packages from the network at runtime.
 - `flake.nix` exports `packages.project`, `packages.default`, and `overlays.default` for aarch64-darwin, aarch64-linux, and x86_64-linux.
 - JSR exports the greeting module at the package root and the CLI at /cli.
-- Source checks and Nix package validation run in separate CI jobs.
+- Normal CI validates only source code and registry package contents. Run Nix package validation manually when changing the packaging. Both source validation and JSR publication use `nix develop --command deno` after the shared Nix setup action.
 
 ## Development tools
 
@@ -87,7 +87,7 @@ mv AGENTS_TEMPLATE.md AGENTS.md
 1. Replace `@username/project`, the version, exports, and publication include list in `deno.json` with the copied project's metadata.
 2. Create the scope and package on JSR under an account you control. In the package's settings, link the exact GitHub owner/repository and require GitHub Actions publication where appropriate.
 3. Use the GitHub-hosted runner and job-scoped `id-token: write` in `publish.yml`. JSR obtains OIDC authentication from the linked repository automatically. Do not add a JSR token or a `--token` argument.
-4. Audit the pinned actions, configure protected release tags, and rename `.github/workflows/publish.yml.disabled` to `publish.yml`.
+4. Audit the third-party action pins and shared monorepo branch references, configure protected release tags, and rename `.github/workflows/publish.yml.disabled` to `publish.yml`.
 5. Run `deno task check`, `deno task test`, and `deno publish --dry-run` and review the exact uploaded files. During local work only, add `--allow-dirty` to the dry run if needed; never add it to the publishing workflow.
 6. Commit the initialized package and push a protected `v<version>` tag matching `deno.json`. The workflow checks the tag before running `deno publish` with default provenance enabled.
 
@@ -97,7 +97,7 @@ Reference: [JSR GitHub Actions publishing](https://jsr.io/docs/publishing-packag
 
 - Keep `.github/workflows/flakehub-publish-rolling.yml.disabled` disabled until a copied project explicitly enables publication.
 - Use the [official FlakeHub publishing wizard](https://flakehub.com/new) to verify the repository name, public visibility, and trusted GitHub organization binding.
-- Audit all pinned actions, including the nested actions in the shared monorepo composites. The publishing composite derives the package name from `github.repository` and publishes a public rolling release.
+- Keep shared `totto2727-org/monorepo` action references on `@main`, matching the other templates. Review their current implementation and the pinned third-party actions before enabling publication. The publishing composite derives the package name from `github.repository` and publishes a public rolling release.
 - Protect `main`, run `nix flake check --all-systems --no-build` and `nix build`, then rename the disabled file to `flakehub-publish-rolling.yml` if publication is wanted.
 - The workflow publishes only pushes to `main` and uses job-scoped OIDC permissions. Delete it if FlakeHub publication is not needed.
 - Registry publication and FlakeHub publication are independent. Enabling one does not require enabling the other.
