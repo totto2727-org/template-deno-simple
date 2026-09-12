@@ -52,7 +52,7 @@ Customize `AGENTS_TEMPLATE.md` for the actual file layout, development commands,
 Remove placeholder guidance and unsupported setup methods.
 Keep template initialization instructions out of the copied project's final documents.
 
-Document the runtime permissions in README Setup: each grant, resource scope, purpose, and whether it is required. Keep the run, global-install, and Nix launcher policies consistent, and do not default to unrestricted access.
+Determine the required runtime permissions and write concrete, minimally scoped permission flags directly into the README run and global-install commands, keeping Usage and the Nix launcher consistent. Keep the rationale and permission-design instructions in AGENTS, not in the user README. Omit unnecessary permissions and leave no permission placeholders in the generated commands.
 
 Replace these template-only entry documents with the customized project documents:
 

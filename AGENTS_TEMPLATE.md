@@ -58,7 +58,10 @@ Replace the sample paths with the initialized project's actual source and test l
 
 - Replace this section with repository-specific invariants and remove placeholder guidance before handoff.
 - Keep README Usage centered on a representative command invocation with no application options when possible.
-- Keep README Setup's permission policy aligned with the run, global-install, and Nix launcher permissions. Document each required grant, its resource scope, and its purpose; never default to unrestricted access.
+- Determine the actual runtime permissions during initialization and put concrete, minimally scoped flags before the package specifier in README Usage and both Setup commands (`deno run` and `deno install --global`). Omit flags when no permissions are required; do not invent permissions merely to fill the template.
+- Keep permission rationale and authoring instructions in AGENTS, not in the user README. The README should show commands that users can copy directly, with no permission placeholders or policy-design checklist.
+- Global installation records permission flags in its launcher. Keep its grants and the Nix launcher consistent with direct execution; use `--no-prompt` for unattended execution when appropriate, and never default to `--allow-all`.
+- When deciding permissions, consult the [Deno permissions guide](https://docs.deno.com/runtime/fundamentals/security/) and [global installation reference](https://docs.deno.com/runtime/reference/cli/install/).
 - Keep README Setup complete: present direct `deno run` and `nix run`, installed `deno install --global` and `nix profile add`, and a declarative `flake.nix` example using `overlays.default` as mutually exclusive choices; state that only one setup method is required.
 - Remove unsupported acquisition paths before publishing the README. For libraries, document dependency setup and every public export instead of CLI installation routes.
 - Inspect the canonical registry API documentation when the project exposes a library. Link a maintained API index when available; otherwise provide complete inline coverage or a substantive guide.
