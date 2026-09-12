@@ -7,7 +7,7 @@
 .envrc                 Optional direnv integration
 AGENTS_TEMPLATE.md     Developer guidance for copied projects
 README_TEMPLATE.md     End-user documentation for copied projects
-deno.json               Package metadata and tasks
+deno.json             Package metadata and tasks
 flake.nix              Development shell, package, and overlay outputs
 flake.lock             Pinned Nix inputs
 package.nix            Installable source-based CLI and runtime
@@ -81,7 +81,7 @@ mv AGENTS_TEMPLATE.md AGENTS.md
 ```
 
 6. Configure or delete each disabled publishing workflow using the sections below. Do not create a `CLAUDE.md` alias.
-7. Run every relevant standard task, including the registry dry run and Nix checks. Run `nix flake update` when upgrading Nix inputs and commit `flake.lock`; commit deno.lock when external dependencies are introduced.
+7. Validate the initialized source with `deno task ci`. Nix package validation is independent and is not part of normal CI. Run `nix flake update` when upgrading Nix inputs and commit `flake.lock`; commit deno.lock when external dependencies are introduced.
 
 ### JSR repository-linked publishing
 

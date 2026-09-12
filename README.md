@@ -28,8 +28,6 @@ The task runner may print its command before the application output.
 
 Create a repository using [Use this template](https://github.com/totto2727-org/template-deno-simple/generate).
 
-Follow [the initialization steps](./AGENTS.md#initialize-a-copied-repository) to configure the copied project, replace its documentation, and enable optional publishing.
-
 ## API
 
 ### Starter command
@@ -49,7 +47,7 @@ greet('TypeScript') // "Hello, TypeScript!"
 
 ## Development
 
-See [AGENTS.md](./AGENTS.md) for project setup, validation, and customization.
+See [AGENTS.md](./AGENTS.md) for development commands and copied-project initialization.
 
 ## License
 

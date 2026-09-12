@@ -1,31 +1,29 @@
 # username/project
 
-Replace this paragraph with the command's purpose and its user-visible outcome.
+Replace this paragraph with a concise description of what the command-line application does, who it serves, and why someone would use it.
 
 ## Usage
 
-Show one representative installed-command invocation and its actual expected output.
+Prefer a direct `deno run` example with no application options and representative output.
 
 ```console
-$ project
+$ deno run jsr:@username/project/cli
 Hello, world!
 ```
 
-Replace the sample output when implementing the application.
-
 ## Key features
 
-- Replace with the application's user-visible capabilities.
+- Replace this item with a user-visible capability.
+- Replace this item with another user-visible capability.
 
 ## Prerequisites
 
-- **Deno 2.9 or newer**: Required for the JSR installation path.
-- **Nix with flakes enabled**: Required only for a Nix installation path.
+- **Deno or Nix**: Replace this text with the minimum Deno requirement, or require Nix with flakes enabled for the Nix paths.
 
 ## Setup
 
-Choose one supported method below; only one setup method is required.
-Remove registry paths until the package is published and remove Nix paths if the CLI flake outputs are removed.
+Document the supported paths. For applications, include Run, Install, and declarative Nix setup when available. For libraries, include dependency setup only.
+Choose one supported setup method; only one is required.
 
 ### Run without installing
 
@@ -43,16 +41,18 @@ nix profile add github:username/project
 
 ### Nix flake
 
+Add the project's overlay and package to `flake.nix`.
+
 ```nix
 {
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     project.url = "github:username/project";
   };
 
   outputs = { nixpkgs, project, ... }:
     let
-      system = "aarch64-darwin"; # Select a supported host system.
+      system = "aarch64-darwin"; # Replace with a supported host system.
       pkgs = import nixpkgs {
         inherit system;
         overlays = [ project.overlays.default ];
@@ -70,24 +70,17 @@ nix profile add github:username/project
 
 ### `project`
 
-The starter command accepts no defined options, ignores extra arguments, prints `Hello, world!` followed by a newline, and exits successfully.
-Replace this description with the completed command's inputs, outputs, exit behavior, and constraints.
+Replace this text with the command's caller-visible behavior, inputs, outputs, exit statuses, and failure contract.
+If a complete inline reference would be too large, replace this section with a link to a substantive guide under `docs/`.
 
-### `greet(name = 'world')`
-
-The package root exports a greeting function that returns a string without normalizing the supplied name.
-
-```ts
-import { greet } from 'jsr:@username/project'
-
-greet('TypeScript') // 'Hello, TypeScript!'
+```console
+$ project
+replace-with-representative-output
 ```
-
-After publishing, inspect JSR's generated API reference and link its canonical API index instead of duplicating it here when it is available.
 
 ## Development
 
-See [AGENTS.md](./AGENTS.md) for project structure and developer commands.
+For repository structure and development commands, see [AGENTS.md](./AGENTS.md).
 
 ## License
 
