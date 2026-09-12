@@ -64,7 +64,7 @@ Replace the sample paths with the initialized project's actual source and test l
 - When deciding permissions, consult the [Deno permissions guide](https://docs.deno.com/runtime/fundamentals/security/) and [global installation reference](https://docs.deno.com/runtime/reference/cli/install/).
 - Keep README Setup complete: present direct `deno run` and `nix run`, installed `deno install --global` and `nix profile add`, and a declarative `flake.nix` example using `overlays.default` as mutually exclusive choices; state that only one setup method is required.
 - Remove unsupported acquisition paths before publishing the README. For libraries, document dependency setup and every public export instead of CLI installation routes.
-- Inspect the canonical registry API documentation when the project exposes a library. Link a maintained API index when available; otherwise provide complete inline coverage or a substantive guide.
+- Use the JSR-generated API reference (`https://jsr.io/@<scope>/<package>/doc`) in README API instead of duplicating exported declarations or API descriptions. Replace the scope and package with the published package identity. Document CLI-specific behavior separately only when the generated reference does not cover it.
 - Keep semicolons disabled, single quotes enabled, line width 120, and Markdown prose unwrapped.
 - Keep exports and publication patterns in deno.json aligned with the public API. Commit deno.lock when external dependencies are introduced.
 - Update flake.lock when Nix inputs change.

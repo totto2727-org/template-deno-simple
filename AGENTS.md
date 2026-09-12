@@ -47,7 +47,7 @@ If runtime dependencies are added, update `package.nix` to bundle or vendor them
 
 ### 3. Create the project's documentation
 
-Customize `README_TEMPLATE.md` for the actual user-facing features, usage, prerequisites, supported installation methods, and public API.
+Customize `README_TEMPLATE.md` for the actual user-facing features, usage, prerequisites, and supported installation methods. Replace its JSR API reference URL with the actual package URL; do not duplicate the registry-generated API documentation.
 Customize `AGENTS_TEMPLATE.md` for the actual file layout, development commands, boundaries, and project-specific rules.
 Remove placeholder guidance and unsupported setup methods.
 Keep template initialization instructions out of the copied project's final documents.

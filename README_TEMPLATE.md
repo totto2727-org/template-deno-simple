@@ -68,15 +68,7 @@ Add the project's overlay and package to `flake.nix`.
 
 ## API
 
-### `project`
-
-Replace this text with the command's caller-visible behavior, inputs, outputs, exit statuses, and failure contract.
-If a complete inline reference would be too large, replace this section with a link to a substantive guide under `docs/`.
-
-```console
-$ project
-replace-with-representative-output
-```
+[JSR API reference](https://jsr.io/@username/project/doc)
 
 ## Development
 
