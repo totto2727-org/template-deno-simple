@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "start": "deno run src/main.ts",
+    "dev": "deno run --watch src/main.ts",
+    "check": "deno fmt --check && deno lint && deno check src/main.ts src/greet_test.ts",
+    "test": "deno test"
+  },
+  "fmt": {
+    "proseWrap": "preserve"
+  },
+  "exclude": [
+    "tmp/"
+  ]
+}
