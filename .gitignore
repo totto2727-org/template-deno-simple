@@ -7,3 +7,6 @@ dist/
 .env.*
 !.env.example
 tmp/
+.direnv/
+result
+result-*

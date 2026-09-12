@@ -1,4 +1,19 @@
 {
+  "name": "@username/project",
+  "version": "0.1.0",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/greet.ts",
+    "./cli": "./src/main.ts"
+  },
+  "publish": {
+    "include": [
+      "LICENSE",
+      "README.md",
+      "src/greet.ts",
+      "src/main.ts"
+    ]
+  },
   "tasks": {
     "start": "deno run src/main.ts",
     "dev": "deno run --watch src/main.ts",

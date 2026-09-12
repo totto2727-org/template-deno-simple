@@ -24,9 +24,13 @@ The task runner may print its command before the application output.
 - **GitHub**: An account to create a repository from this template.
 - **Deno**: Install [Deno](https://docs.deno.com/runtime/getting_started/installation/) 2.9 or newer.
 
+- **Nix (optional)**: Use the flake-based development environment and packaged command.
+
 ## Setup
 
 Create a repository using [Use this template](https://github.com/totto2727-org/template-deno-simple/generate).
+
+Follow [the initialization steps](./AGENTS.md#initialize-a-copied-repository) to configure the copied project, replace its documentation, and enable optional publishing.
 
 ## API
 

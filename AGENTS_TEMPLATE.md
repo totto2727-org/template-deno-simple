@@ -1,4 +1,4 @@
-# template-deno-simple
+# username/project
 
 ## Repository structure
 
@@ -13,6 +13,8 @@ flake.lock             Pinned Nix inputs
 package.nix            Installable source-based CLI and runtime
 src/                   Greeting, CLI entry point, and tests
 ```
+
+Replace the sample paths with the initialized project's layout and remove the document-template entries after conversion.
 
 ## Development commands
 
@@ -41,12 +43,6 @@ src/                   Greeting, CLI entry point, and tests
 
 ## Architecture
 
-### Template documentation
-
-- `README.md` and `AGENTS.md` describe this template.
-- `README_TEMPLATE.md` and `AGENTS_TEMPLATE.md` become the copied project's canonical documents after initialization.
-- Keep all four documents in the same README/AGENTS structure as the other simple templates.
-
 ### Command and package
 
 - `src/greet.ts` owns the pure greeting and `src/main.ts` owns standard output.
@@ -55,6 +51,8 @@ src/                   Greeting, CLI entry point, and tests
 - `flake.nix` exports `packages.project`, `packages.default`, and `overlays.default` for aarch64-darwin, aarch64-linux, and x86_64-linux.
 - JSR exports the greeting module at the package root and the CLI at /cli.
 - Source checks and Nix package validation run in separate CI jobs.
+
+Replace the sample-specific details with actual application boundaries and keep its public CLI and exports documented and tested.
 
 ## Development tools
 
@@ -65,22 +63,10 @@ src/                   Greeting, CLI entry point, and tests
 
 ## Package-specific rules
 
-### Initialize a copied repository
-
-1. Create the repository with GitHub's Use this template flow, clone it, and enter its root.
-2. Enter `nix develop`. If using direnv, inspect `.envrc` before running `direnv allow`.
-3. Replace `project` in `package.nix`, `flake.nix` package/overlay attributes, the command documentation, and both document templates with the new command name. Replace `username/project`, repository URLs, package names, description, version, and license holder. Retain explicit export paths and include only intended public sources in publish.include.
-4. Replace the sample implementation and tests. Keep `package.nix` and package/overlay outputs while distributing a CLI, or remove those outputs and the corresponding README installation paths together.
-5. Customize `README_TEMPLATE.md` and `AGENTS_TEMPLATE.md` for the copied project. Remove placeholder guidance and replace the template-only documents:
-
-```bash
-rm README.md AGENTS.md
-mv README_TEMPLATE.md README.md
-mv AGENTS_TEMPLATE.md AGENTS.md
-```
-
-6. Configure or delete each disabled publishing workflow using the sections below. Do not create a `CLAUDE.md` alias.
-7. Run every relevant standard task, including the registry dry run and Nix checks. Run `nix flake update` when upgrading Nix inputs and commit `flake.lock`; commit deno.lock when external dependencies are introduced.
+- Replace this guidance with the copied project's invariants and remove all placeholders before handoff.
+- Keep manifest metadata, command name, Nix package/overlay attributes, and user documentation aligned.
+- Preserve Nix acquisition paths while the CLI package is retained.
+- Update lockfiles when dependencies or Nix inputs change.
 
 ### JSR repository-linked publishing
 
