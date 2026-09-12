@@ -31,7 +31,7 @@ Replace the sample paths with the initialized project's actual source and test l
 - `deno task test`: Run Deno tests.
 - `deno task start`: Run the command from source.
 - `deno task dev`: Run the command and watch source changes.
-- `deno task ci`: Run source checks, tests, command execution, and a JSR publish dry run without Nix package validation.
+- `deno task ci`: Run source checks, tests, and a JSR publish dry run without Nix package validation.
 - `nix build .#project`: Build the optional Nix package independently.
 - `nix run .`: Run the optional Nix package independently.
 
