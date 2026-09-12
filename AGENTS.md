@@ -28,7 +28,7 @@ Use the requested repository name, package name, purpose, license, and publicati
 Resolve missing project-specific decisions with the user rather than inventing registry ownership or publishing credentials.
 Work from the copied repository root.
 
-Use `nix develop` to obtain Deno from the pinned environment. CI loads the same environment with `eval "$(nix print-dev-env "$GITHUB_WORKSPACE#default")"` and runs `deno task ci`.
+Use `nix develop` to obtain Deno from the pinned environment. The shell also supplies Node.js and Vite+ because the shared publish-jsr action invokes `vpx jsr publish`. CI loads the same environment with `eval "$(nix print-dev-env "$GITHUB_WORKSPACE#default")"` and runs `deno task ci`.
 If using direnv, review `.envrc` before explicitly running `direnv allow`.
 
 ### 2. Replace metadata and starter files
@@ -84,7 +84,7 @@ Review the final documents for remaining placeholders, obsolete template file re
 3. Use the GitHub-hosted runner and job-scoped `id-token: write` in `publish.yml`. JSR obtains OIDC authentication from the linked repository automatically. Do not add a JSR token or a `--token` argument.
 4. Audit the third-party action pins and shared monorepo branch references, configure protected release tags, and rename `.github/workflows/publish.yml.disabled` to `publish.yml`.
 5. Run `deno task check`, `deno task test`, and `deno publish --dry-run` and review the exact uploaded files. During local work only, add `--allow-dirty` to the dry run if needed; never add it to the publishing workflow.
-6. Commit the initialized package and push a protected release tag. The workflow loads the Nix environment and runs only `deno publish` after setup, with default provenance enabled. Source checks, tests, and the publish dry run belong to pre-merge CI and are not repeated here. JSR uses the version in `deno.json` and succeeds when that version is already published.
+6. Commit the initialized package and push a protected release tag. The workflow invokes `totto2727-org/monorepo/.github/actions/publish-jsr@main` with `working-directory: .`. That action loads the Nix environment and runs `vpx jsr publish`, using repository-linked OIDC with default provenance enabled. Source checks, tests, and the publish dry run belong to pre-merge CI and are not repeated here. JSR uses the version in `deno.json` and succeeds when that version is already published.
 
 Reference: [JSR GitHub Actions publishing](https://jsr.io/docs/publishing-packages#publishing-from-github-actions).
 
