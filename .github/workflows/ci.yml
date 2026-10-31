@@ -21,7 +21,7 @@ jobs:
           persist-credentials: false
       - uses: totto2727-org/monorepo/.github/actions/setup-typescript@main
       - name: Remove unused generated JavaScript install artifacts
-        run: git clean -fdx -- pnpm-lock.yaml node_modules
+        run: git clean -fdx -- pnpm-lock.yaml node_modules package.json
       - uses: totto2727-org/monorepo/.github/actions/setup-nix@main
       - name: Verify Deno project
         run: |
