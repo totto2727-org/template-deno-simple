@@ -20,9 +20,6 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - uses: totto2727-org/monorepo/.github/actions/setup-typescript@main
-      - name: Remove unused generated JavaScript install artifacts
-        run: git clean -fdx -- pnpm-lock.yaml node_modules
       - uses: totto2727-org/monorepo/.github/actions/setup-nix@main
       - uses: totto2727-org/monorepo/.github/actions/publish-jsr@main
         with:
