@@ -20,6 +20,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: totto2727-org/monorepo/.github/actions/setup-typescript@main
+      - name: Remove unused generated JavaScript lockfile
+        run: git clean -f -- pnpm-lock.yaml
       - uses: totto2727-org/monorepo/.github/actions/setup-nix@main
       - name: Verify Deno project
         run: |
